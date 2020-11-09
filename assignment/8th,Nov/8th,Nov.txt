@@ -1,4 +1,5 @@
 1. There are 3 buckets of unlimited 5, 10 and 25 cents. If we can pick 5 coins, print all the combinations of  of the coins that can be made.
+
 public static void main(String[] args) {
 		int i = 0;
 		int j = 0;
@@ -36,46 +37,51 @@ public static void main(String[] args) {
 
  2. I have following coins 1,1,1,1,1,5,5,5,10,10,10,10, 25,25 Can I make a total of 73 cents. if yes how many combinations can I make print them out. Hint This is baqsically generate all sub sets (Binary sequence)
    
+public static void test(int s){
 
- public static void test(int x){
         int sum = 0;
-        
         int count = 0;
-        
         int times = 0;
-        
-        int[] a = {1, 5, 10, 25};
+        int[] e = {1, 5, 10, 25};
 
-       
-     
-        for (int k = 0; k <= 2; k++) {
-            for (int l = 0; l<= 4; l++) {
-                for (int m = 0; m <= 3; m++) {
-                    for (int n =0; n <= 5; n++){        
-                         
-                sum = k * a[3] + l * a[2] + m * a[1] + n * a[0];
-                    times++;
-                    if (sum == x && n >= 0) {
-                        count++;
-                        System.out.println("number of 25 cent: " + k);
-                        System.out.println("number of 10 cent: " + l);
-                        System.out.println("number of  5 cent: " + m);
-                        System.out.println("number of  1 cent: " + n);
-                        System.out.println( );
-                            }    
+        for (int i = 0; i <= 5; i++){
+            for (int j = 0; j<= 3; j++){
+                for (int m = 0; m <= 4; m++){
+                    for (int n =0; n <= 2; n++){
+                        sum = i * e[0] + j * e[1] + m * e[2] + n * e[3];
+                        times++;
+                        if (sum == s && n >= 0){
+                            count++;
+
+                            System.out.print("{");
+                            System.out.print("1");
+                            for (int a = 0; a < i-1; a++) {
+                                System.out.print(",1");
+                            }
+                            for (int b = 0; b < j; b++) {
+                                System.out.print(",5");
+                            }
+                            for (int c = 0; c < m; c++) {
+                                System.out.print(",10");
+                            }
+                            for (int d = 0; d < n; d++) {
+                                System.out.print(",25");
+                            }
+
+                            System.out.print("}");
+                            System.out.println( );
+                        }
                     }
                 }
             }
-            
+
         }
-        
-        System.out.println("number of combination:" + count);
-        
+        System.out.println("number of combinations:" + count);
     }
 
     public static void main(String[] args) {
         long startTime = System.currentTimeMillis();
         test(73);
-        
     }
+ 
 
